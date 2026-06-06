@@ -8,23 +8,31 @@ import java.util.List;
 import com.vetcontrol.dao.MascotaDAOImpl;
 import com.vetcontrol.modelo.Mascota;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class MascotaForm extends JFrame {
     private JComboBox<String> cboCliente;
+    
+    private JComboBox<String> cboSexo;
 
-private JTextField txtNombre;
+    private JTextField txtNombre;
 
-private JTextField txtEspecie;
+    private JTextField txtEspecie;
 
-private JTextField txtRaza;
+    private JTextField txtRaza;
 
-private JTextField txtEdad;
+    private JTextField txtEdad;
 
-private JTextField txtPeso;
+    private JTextField txtPeso;
 
-private JButton btnGuardar;
+    private JButton btnGuardar;
+
+    private JTable tablaMascotas;
+
+    private DefaultTableModel modelo;
 
 private void cargarClientes() {
+    
 
     ClienteDAOImpl dao = new ClienteDAOImpl();
 
@@ -38,6 +46,28 @@ private void cargarClientes() {
                 c.getId() + " - " + c.getNombres()
         );
 
+    }
+}
+private void cargarMascotas() {
+
+    modelo.setRowCount(0);
+
+    MascotaDAOImpl dao =
+            new MascotaDAOImpl();
+
+    List<Mascota> lista =
+            dao.listar();
+
+    for (Mascota m : lista) {
+
+        modelo.addRow(new Object[]{
+            m.getId(),
+            m.getClienteId(),
+            m.getNombre(),
+            m.getEspecie(),
+            m.getRaza(),
+            m.getEdad()
+        });
     }
 }
 
@@ -57,54 +87,86 @@ private void cargarClientes() {
 lblCliente.setBounds(50, 50, 100, 25);
 add(lblCliente);
 
+JLabel lblSexo = new JLabel("Sexo:");
+lblSexo.setBounds(50, 100, 100, 25);
+add(lblSexo);
+
 JLabel lblNombre = new JLabel("Nombre:");
-lblNombre.setBounds(50, 100, 100, 25);
+lblNombre.setBounds(50, 150, 100, 25);
 add(lblNombre);
 
 JLabel lblEspecie = new JLabel("Especie:");
-lblEspecie.setBounds(50, 150, 100, 25);
+lblEspecie.setBounds(50, 200, 100, 25);
 add(lblEspecie);
 
 JLabel lblRaza = new JLabel("Raza:");
-lblRaza.setBounds(50, 200, 100, 25);
+lblRaza.setBounds(50, 250, 100, 25);
 add(lblRaza);
 
 JLabel lblEdad = new JLabel("Edad:");
-lblEdad.setBounds(50, 250, 100, 25);
+lblEdad.setBounds(50, 300, 100, 25);
 add(lblEdad);
 
 JLabel lblPeso = new JLabel("Peso:");
-lblPeso.setBounds(50, 300, 100, 25);
+lblPeso.setBounds(50, 350, 100, 25);
 add(lblPeso);
+
 cboCliente = new JComboBox<>();
 cboCliente.setBounds(150, 50, 250, 25);
 add(cboCliente);
+cboSexo = new JComboBox<>();
+
+cboSexo.addItem("Macho");
+cboSexo.addItem("Hembra");
+
+cboSexo.setBounds(150, 100, 250, 25);
+
+add(cboSexo);
 
 txtNombre = new JTextField();
-txtNombre.setBounds(150, 100, 250, 25);
+txtNombre.setBounds(150, 150, 250, 25);
 add(txtNombre);
 
 txtEspecie = new JTextField();
-txtEspecie.setBounds(150, 150, 250, 25);
+txtEspecie.setBounds(150, 200, 250, 25);
 add(txtEspecie);
 
 txtRaza = new JTextField();
-txtRaza.setBounds(150, 200, 250, 25);
+txtRaza.setBounds(150, 250, 250, 25);
 add(txtRaza);
 
 txtEdad = new JTextField();
-txtEdad.setBounds(150, 250, 250, 25);
+txtEdad.setBounds(150, 300, 250, 25);
 add(txtEdad);
 
 txtPeso = new JTextField();
-txtPeso.setBounds(150, 300, 250, 25);
+txtPeso.setBounds(150, 350, 250, 25);
 add(txtPeso);
 
 btnGuardar = new JButton("Guardar Mascota");
-btnGuardar.setBounds(200, 360, 180, 35);
+btnGuardar.setBounds(200, 400, 180, 35);
 add(btnGuardar);
 cargarClientes();
 btnGuardar.addActionListener(e -> guardarMascota());
+modelo = new DefaultTableModel();
+
+modelo.addColumn("ID");
+modelo.addColumn("Cliente");
+modelo.addColumn("Nombre");
+modelo.addColumn("Especie");
+modelo.addColumn("Raza");
+modelo.addColumn("Edad");
+
+tablaMascotas = new JTable(modelo);
+
+JScrollPane scroll =
+        new JScrollPane(tablaMascotas);
+
+scroll.setBounds(430, 50, 240, 300);
+
+add(scroll);
+
+cargarMascotas();
 
     }
     private void guardarMascota() {
@@ -123,6 +185,9 @@ btnGuardar.addActionListener(e -> guardarMascota());
 
         mascota.setClienteId(clienteId);
         mascota.setNombre(txtNombre.getText());
+        mascota.setSexo(
+        cboSexo.getSelectedItem().toString()
+);
         mascota.setEspecie(txtEspecie.getText());
         mascota.setRaza(txtRaza.getText());
         mascota.setEdad(
@@ -143,6 +208,7 @@ btnGuardar.addActionListener(e -> guardarMascota());
             );
 
             limpiarCampos();
+            cargarMascotas();
 
         } else {
 

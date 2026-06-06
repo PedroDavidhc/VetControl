@@ -14,10 +14,10 @@ public class MascotaDAOImpl implements MascotaDAO {
 @Override
 public boolean guardar(Mascota mascota) {
 
-    String sql =
-            "INSERT INTO mascotas "
-            + "(cliente_id,nombre,especie,raza,edad,peso) "
-            + "VALUES (?,?,?,?,?,?)";
+String sql =
+        "INSERT INTO mascotas "
+        + "(cliente_id,nombre,sexo,especie,raza,edad,peso) "
+        + "VALUES (?,?,?,?,?,?,?)";
 
     try {
 
@@ -26,13 +26,13 @@ public boolean guardar(Mascota mascota) {
         PreparedStatement ps =
                 con.prepareStatement(sql);
 
-        ps.setInt(1, mascota.getClienteId());
-        ps.setString(2, mascota.getNombre());
-        ps.setString(3, mascota.getEspecie());
-        ps.setString(4, mascota.getRaza());
-        ps.setInt(5, mascota.getEdad());
-        ps.setDouble(6, mascota.getPeso());
-
+            ps.setInt(1, mascota.getClienteId());
+            ps.setString(2, mascota.getNombre());
+            ps.setString(3, mascota.getSexo());
+            ps.setString(4, mascota.getEspecie());
+            ps.setString(5, mascota.getRaza());
+            ps.setInt(6, mascota.getEdad());
+            ps.setDouble(7, mascota.getPeso());
         return ps.executeUpdate() > 0;
 
     } catch (SQLException e) {
@@ -69,6 +69,7 @@ public List<Mascota> listar() {
             mascota.setId(rs.getInt("id"));
             mascota.setClienteId(rs.getInt("cliente_id"));
             mascota.setNombre(rs.getString("nombre"));
+            mascota.setSexo(rs.getString("sexo"));
             mascota.setEspecie(rs.getString("especie"));
             mascota.setRaza(rs.getString("raza"));
             mascota.setEdad(rs.getInt("edad"));

@@ -5,6 +5,7 @@ public class Mascota {
     private int id;
     private int clienteId;
     private String nombre;
+    private String sexo;
     private String especie;
     private String raza;
     private int edad;
@@ -13,13 +14,15 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(int id, int clienteId, String nombre,
-                   String especie, String raza,
-                   int edad, double peso) {
+public Mascota(int id, int clienteId, String nombre,
+               String sexo,
+               String especie, String raza,
+               int edad, double peso) {
 
         this.id = id;
         this.clienteId = clienteId;
         this.nombre = nombre;
+        this.sexo = sexo;
         this.especie = especie;
         this.raza = raza;
         this.edad = edad;
@@ -49,6 +52,14 @@ public class Mascota {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public String getSexo() {
+    return sexo;
+}
+
+public void setSexo(String sexo) {
+    this.sexo = sexo;
+}
 
     public String getEspecie() {
         return especie;
