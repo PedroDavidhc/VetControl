@@ -33,10 +33,10 @@ public class DashboardForm extends JFrame {
 
         JButton btnAdmision = new JButton("Admisión");
         btnAdmision.setBounds(20, 130, 170, 35);
-        btnAdmision.addActionListener(e -> {
+btnAdmision.addActionListener(e -> {
 
-    AdmisionForm admision =
-            new AdmisionForm();
+    AdmisionMenuForm admision =
+            new AdmisionMenuForm();
 
     admision.setVisible(true);
 

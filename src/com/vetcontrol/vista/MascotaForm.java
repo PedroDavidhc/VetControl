@@ -60,14 +60,15 @@ private void cargarMascotas() {
 
     for (Mascota m : lista) {
 
-        modelo.addRow(new Object[]{
-            m.getId(),
-            m.getClienteId(),
-            m.getNombre(),
-            m.getEspecie(),
-            m.getRaza(),
-            m.getEdad()
-        });
+            modelo.addRow(new Object[]{
+        m.getId(),
+        m.getClienteId(),
+        m.getNombre(),
+        m.getSexo(),
+        m.getEspecie(),
+        m.getRaza(),
+        m.getEdad()
+    });
     }
 }
 
@@ -153,6 +154,7 @@ modelo = new DefaultTableModel();
 modelo.addColumn("ID");
 modelo.addColumn("Cliente");
 modelo.addColumn("Nombre");
+modelo.addColumn("Sexo");
 modelo.addColumn("Especie");
 modelo.addColumn("Raza");
 modelo.addColumn("Edad");
