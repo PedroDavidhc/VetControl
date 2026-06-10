@@ -1,12 +1,21 @@
 package com.vetcontrol.vista;
 
 import javax.swing.*;
-import com.vetcontrol.vista.AdmisionForm;
+
 import com.vetcontrol.dao.ClienteDAOImpl;
 import com.vetcontrol.dao.MascotaDAOImpl;
 import com.vetcontrol.dao.HistoriaClinicaDAOImpl;
 import com.vetcontrol.dao.FacturaDAOImpl;
 import java.awt.Font;
+import com.vetcontrol.vista.ConsultaClientePanel;
+import com.vetcontrol.vista.HistoriaClinicaPanel;
+import com.vetcontrol.vista.FacturacionPanel;
+import com.vetcontrol.vista.ClientePanel;
+import com.vetcontrol.vista.AdmisionPanel;
+import com.vetcontrol.vista.AdmisionPanel;
+import com.vetcontrol.vista.ConsultaClientePanel;
+import com.vetcontrol.vista.FacturacionPanel;
+import com.vetcontrol.vista.HistoriaClinicaPanel;
 
 public class DashboardForm extends JFrame {
 
@@ -35,28 +44,29 @@ public class DashboardForm extends JFrame {
 
         JButton btnDashboard = new JButton("Dashboard");
         btnDashboard.setBounds(20, 80, 170, 35);
+            btnDashboard.addActionListener(e -> {
+
+        mostrarDashboard();
+
+    });
 
         JButton btnAdmision = new JButton("Admisión");
         btnAdmision.setBounds(20, 130, 170, 35);
-btnAdmision.addActionListener(e -> {
+        btnAdmision.addActionListener(e -> {
 
-    AdmisionMenuForm admision =
-            new AdmisionMenuForm();
-
-    admision.setVisible(true);
-
-});
+            mostrarPanel(
+                    new AdmisionPanel(panelContenido)
+            );
+        });
         
 
-        JButton btnHistoria = new JButton("Historia Clínica");
-        btnHistoria.setBounds(20, 180, 170, 35);
-        btnHistoria.addActionListener(e -> {
+                JButton btnHistoria = new JButton("Historia Clínica");
+                btnHistoria.setBounds(20, 180, 170, 35);
+                btnHistoria.addActionListener(e -> {
 
-            HistoriaClinicaForm historia =
-                    new HistoriaClinicaForm();
-
-            historia.setVisible(true);
-
+            mostrarPanel(
+                    new HistoriaClinicaPanel()
+            );
         });
         
 
@@ -64,11 +74,9 @@ btnAdmision.addActionListener(e -> {
         btnFacturacion.setBounds(20, 230, 170, 35);
         btnFacturacion.addActionListener(e -> {
 
-            FacturacionForm factura =
-                    new FacturacionForm();
-
-            factura.setVisible(true);
-
+            mostrarPanel(
+                    new FacturacionPanel()
+            );
         });
                 JButton btnConsultaCliente =
                 new JButton("Consulta Cliente");
@@ -80,14 +88,12 @@ btnAdmision.addActionListener(e -> {
                 35
         );
 
-        btnConsultaCliente.addActionListener(e -> {
+btnConsultaCliente.addActionListener(e -> {
 
-            ConsultaClienteForm consulta =
-                    new ConsultaClienteForm();
-
-            consulta.setVisible(true);
-
-        });
+    mostrarPanel(
+            new ConsultaClientePanel()
+    );
+});
         
 
                 JButton btnSalir = new JButton("Cerrar Sesión");
@@ -129,9 +135,39 @@ btnAdmision.addActionListener(e -> {
 
     private void crearContenido() {
 
-    panelContenido = new JPanel();
-    panelContenido.setLayout(null);
-    panelContenido.setBounds(220, 80, 980, 620);
+            panelContenido = new JPanel();
+            panelContenido.setLayout(null);
+            panelContenido.setBounds(
+                    220,
+                    80,
+                    980,
+                    620
+            );
+
+            add(panelContenido);
+
+            mostrarDashboard();
+        }
+private void mostrarPanel(JPanel panel) {
+
+    panelContenido.removeAll();
+
+    panel.setBounds(
+            0,
+            0,
+            panelContenido.getWidth(),
+            panelContenido.getHeight()
+    );
+
+    panelContenido.add(panel);
+
+    panelContenido.revalidate();
+
+    panelContenido.repaint();
+} 
+private void mostrarDashboard() {
+
+    panelContenido.removeAll();
 
     JLabel lblBienvenida =
             new JLabel("Bienvenido al Sistema Veterinario");
@@ -140,7 +176,12 @@ btnAdmision.addActionListener(e -> {
             new Font("Arial", Font.BOLD, 18)
     );
 
-    lblBienvenida.setBounds(330, 30, 350, 30);
+    lblBienvenida.setBounds(
+            330,
+            30,
+            350,
+            30
+    );
 
     panelContenido.add(lblBienvenida);
 
@@ -167,107 +208,150 @@ btnAdmision.addActionListener(e -> {
 
     int totalFacturas =
             facturaDAO.contar();
-
-    // TARJETA CLIENTES
-
+    
     JPanel cardClientes = new JPanel();
-
+    
+   
     cardClientes.setLayout(null);
 
-    cardClientes.setBounds(40, 120, 200, 120);
+    cardClientes.setBounds(
+            40,
+            120,
+            200,
+            120
+    );
 
     cardClientes.setBorder(
             BorderFactory.createTitledBorder("CLIENTES")
     );
 
     JLabel lblTotalClientes =
-            new JLabel(String.valueOf(totalClientes));
+            new JLabel(
+                    String.valueOf(totalClientes)
+            );
 
     lblTotalClientes.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
 
-    lblTotalClientes.setBounds(75, 35, 100, 40);
+    lblTotalClientes.setBounds(
+            75,
+            35,
+            100,
+            40
+    );
 
     cardClientes.add(lblTotalClientes);
 
     panelContenido.add(cardClientes);
 
-    // TARJETA MASCOTAS
-
     JPanel cardMascotas = new JPanel();
 
     cardMascotas.setLayout(null);
 
-    cardMascotas.setBounds(270, 120, 200, 120);
+    cardMascotas.setBounds(
+            270,
+            120,
+            200,
+            120
+    );
 
     cardMascotas.setBorder(
             BorderFactory.createTitledBorder("MASCOTAS")
     );
 
     JLabel lblTotalMascotas =
-            new JLabel(String.valueOf(totalMascotas));
+            new JLabel(
+                    String.valueOf(totalMascotas)
+            );
 
     lblTotalMascotas.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
 
-    lblTotalMascotas.setBounds(75, 35, 100, 40);
+    lblTotalMascotas.setBounds(
+            75,
+            35,
+            100,
+            40
+    );
 
     cardMascotas.add(lblTotalMascotas);
 
     panelContenido.add(cardMascotas);
 
-    // TARJETA HISTORIAS
-
     JPanel cardHistorias = new JPanel();
 
     cardHistorias.setLayout(null);
 
-    cardHistorias.setBounds(500, 120, 200, 120);
+    cardHistorias.setBounds(
+            500,
+            120,
+            200,
+            120
+    );
 
     cardHistorias.setBorder(
             BorderFactory.createTitledBorder("HISTORIAS")
     );
 
     JLabel lblTotalHistorias =
-            new JLabel(String.valueOf(totalHistorias));
+            new JLabel(
+                    String.valueOf(totalHistorias)
+            );
 
     lblTotalHistorias.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
 
-    lblTotalHistorias.setBounds(75, 35, 100, 40);
+    lblTotalHistorias.setBounds(
+            75,
+            35,
+            100,
+            40
+    );
 
     cardHistorias.add(lblTotalHistorias);
 
     panelContenido.add(cardHistorias);
 
-    // TARJETA FACTURAS
-
     JPanel cardFacturas = new JPanel();
 
     cardFacturas.setLayout(null);
 
-    cardFacturas.setBounds(730, 120, 200, 120);
+    cardFacturas.setBounds(
+            730,
+            120,
+            200,
+            120
+    );
 
     cardFacturas.setBorder(
             BorderFactory.createTitledBorder("FACTURAS")
     );
 
     JLabel lblTotalFacturas =
-            new JLabel(String.valueOf(totalFacturas));
+            new JLabel(
+                    String.valueOf(totalFacturas)
+            );
 
     lblTotalFacturas.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
 
-    lblTotalFacturas.setBounds(75, 35, 100, 40);
+    lblTotalFacturas.setBounds(
+            75,
+            35,
+            100,
+            40
+    );
 
     cardFacturas.add(lblTotalFacturas);
 
     panelContenido.add(cardFacturas);
 
-    add(panelContenido);
+    panelContenido.revalidate();
+
+    panelContenido.repaint();
 }
 }
