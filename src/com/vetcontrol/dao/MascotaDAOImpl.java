@@ -120,4 +120,76 @@ public int contar() {
 
     return total;
 }
-}
+    @Override
+    public List<Mascota> listarPorCliente(int clienteId) {
+
+        List<Mascota> lista =
+                new ArrayList<>();
+
+        String sql =
+                "SELECT * FROM mascotas WHERE cliente_id = ?";
+
+        try {
+
+            Connection con =
+                    Conexion.conectar();
+
+            PreparedStatement ps =
+                    con.prepareStatement(sql);
+
+            ps.setInt(1, clienteId);
+
+            ResultSet rs =
+                    ps.executeQuery();
+
+            while (rs.next()) {
+
+                Mascota mascota =
+                        new Mascota();
+
+                mascota.setId(
+                        rs.getInt("id")
+                );
+
+                mascota.setClienteId(
+                        rs.getInt("cliente_id")
+                );
+
+                mascota.setNombre(
+                        rs.getString("nombre")
+                );
+
+                mascota.setSexo(
+                        rs.getString("sexo")
+                );
+
+                mascota.setEspecie(
+                        rs.getString("especie")
+                );
+
+                mascota.setRaza(
+                        rs.getString("raza")
+                );
+
+                mascota.setEdad(
+                        rs.getInt("edad")
+                );
+
+                mascota.setPeso(
+                        rs.getDouble("peso")
+                );
+
+                lista.add(mascota);
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error al listar mascotas del cliente: "
+                    + e.getMessage()
+            );
+        }
+
+        return lista;
+    }
+    }

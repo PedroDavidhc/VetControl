@@ -9,5 +9,6 @@ public interface MascotaDAO {
 
     List<Mascota> listar();
     int contar();
+    List<Mascota> listarPorCliente(int clienteId);
 
 }

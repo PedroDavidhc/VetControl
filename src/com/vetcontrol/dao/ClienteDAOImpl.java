@@ -84,38 +84,95 @@ public List<Cliente> listar() {
 
     return lista;
 }
-        @Override
-        public int contar() {
+                @Override
+                public int contar() {
 
-            int total = 0;
+                    int total = 0;
 
-            String sql = "SELECT COUNT(*) FROM clientes";
+                    String sql = "SELECT COUNT(*) FROM clientes";
+
+                    try {
+
+                        Connection con = Conexion.conectar();
+
+                        PreparedStatement ps =
+                                con.prepareStatement(sql);
+
+                        ResultSet rs =
+                                ps.executeQuery();
+
+                        if (rs.next()) {
+
+                            total = rs.getInt(1);
+                        }
+
+                    } catch (SQLException e) {
+
+                        System.out.println(
+                                "Error al contar clientes: "
+                                + e.getMessage()
+                        );
+                    }
+
+                    return total;
+                }
+          @Override
+        public Cliente buscarPorDni(String dni) {
+
+            String sql =
+                    "SELECT * FROM clientes WHERE dni = ?";
 
             try {
 
-                Connection con = Conexion.conectar();
+                Connection con =
+                        Conexion.conectar();
 
                 PreparedStatement ps =
                         con.prepareStatement(sql);
+
+                ps.setString(1, dni);
 
                 ResultSet rs =
                         ps.executeQuery();
 
                 if (rs.next()) {
 
-                    total = rs.getInt(1);
+                    Cliente cliente =
+                            new Cliente();
+
+                    cliente.setId(
+                            rs.getInt("id")
+                    );
+
+                    cliente.setDni(
+                            rs.getString("dni")
+                    );
+
+                    cliente.setNombres(
+                            rs.getString("nombres")
+                    );
+
+                    cliente.setTelefono(
+                            rs.getString("telefono")
+                    );
+
+                    cliente.setDireccion(
+                            rs.getString("direccion")
+                    );
+
+                    return cliente;
                 }
 
             } catch (SQLException e) {
 
                 System.out.println(
-                        "Error al contar clientes: "
+                        "Error al buscar cliente: "
                         + e.getMessage()
                 );
             }
 
-            return total;
+            return null;
+        }      
+
+
         }
-
-
-}

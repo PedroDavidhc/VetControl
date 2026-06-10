@@ -6,6 +6,7 @@ import com.vetcontrol.dao.ClienteDAOImpl;
 import com.vetcontrol.dao.MascotaDAOImpl;
 import com.vetcontrol.dao.HistoriaClinicaDAOImpl;
 import com.vetcontrol.dao.FacturaDAOImpl;
+import java.awt.Font;
 
 public class DashboardForm extends JFrame {
 
@@ -69,6 +70,25 @@ btnAdmision.addActionListener(e -> {
             factura.setVisible(true);
 
         });
+                JButton btnConsultaCliente =
+                new JButton("Consulta Cliente");
+
+        btnConsultaCliente.setBounds(
+                20,
+                280,
+                170,
+                35
+        );
+
+        btnConsultaCliente.addActionListener(e -> {
+
+            ConsultaClienteForm consulta =
+                    new ConsultaClienteForm();
+
+            consulta.setVisible(true);
+
+        });
+        
 
                 JButton btnSalir = new JButton("Cerrar Sesión");
                 btnSalir.setBounds(20, 550, 170, 35);
@@ -83,11 +103,12 @@ btnAdmision.addActionListener(e -> {
 
         });
 
-        panelMenu.add(btnDashboard);
-        panelMenu.add(btnAdmision);
-        panelMenu.add(btnHistoria);
-        panelMenu.add(btnFacturacion);
-        panelMenu.add(btnSalir);
+            panelMenu.add(btnDashboard);
+            panelMenu.add(btnAdmision);
+            panelMenu.add(btnHistoria);
+            panelMenu.add(btnFacturacion);
+            panelMenu.add(btnConsultaCliente);
+            panelMenu.add(btnSalir);
 
         add(panelMenu);
     }
@@ -108,101 +129,145 @@ btnAdmision.addActionListener(e -> {
 
     private void crearContenido() {
 
-        panelContenido = new JPanel();
-        panelContenido.setLayout(null);
-        panelContenido.setBounds(220, 80, 980, 620);
+    panelContenido = new JPanel();
+    panelContenido.setLayout(null);
+    panelContenido.setBounds(220, 80, 980, 620);
 
-        JLabel lblBienvenida =
-                new JLabel("Bienvenido al Sistema Veterinario");
+    JLabel lblBienvenida =
+            new JLabel("Bienvenido al Sistema Veterinario");
 
-        lblBienvenida.setBounds(330, 30, 300, 30);
+    lblBienvenida.setFont(
+            new Font("Arial", Font.BOLD, 18)
+    );
 
-        panelContenido.add(lblBienvenida);
+    lblBienvenida.setBounds(330, 30, 350, 30);
 
-        ClienteDAOImpl clienteDAO =
-                new ClienteDAOImpl();
+    panelContenido.add(lblBienvenida);
 
-        MascotaDAOImpl mascotaDAO =
-                new MascotaDAOImpl();
+    ClienteDAOImpl clienteDAO =
+            new ClienteDAOImpl();
 
-        HistoriaClinicaDAOImpl historiaDAO =
-                new HistoriaClinicaDAOImpl();
+    MascotaDAOImpl mascotaDAO =
+            new MascotaDAOImpl();
 
-        FacturaDAOImpl facturaDAO =
-                new FacturaDAOImpl();
+    HistoriaClinicaDAOImpl historiaDAO =
+            new HistoriaClinicaDAOImpl();
 
-        int totalClientes =
-                clienteDAO.contar();
+    FacturaDAOImpl facturaDAO =
+            new FacturaDAOImpl();
 
-        int totalMascotas =
-                mascotaDAO.contar();
+    int totalClientes =
+            clienteDAO.contar();
 
-        int totalHistorias =
-                historiaDAO.contar();
+    int totalMascotas =
+            mascotaDAO.contar();
 
-        int totalFacturas =
-                facturaDAO.contar();
+    int totalHistorias =
+            historiaDAO.contar();
 
-        JLabel lblClientes =
-                new JLabel(
-                        "Total Clientes: "
-                        + totalClientes
-                );
+    int totalFacturas =
+            facturaDAO.contar();
 
-        lblClientes.setBounds(
-                100,
-                120,
-                250,
-                30
-        );
+    // TARJETA CLIENTES
 
-        panelContenido.add(lblClientes);
+    JPanel cardClientes = new JPanel();
 
-        JLabel lblMascotas =
-                new JLabel(
-                        "Total Mascotas: "
-                        + totalMascotas
-                );
+    cardClientes.setLayout(null);
 
-        lblMascotas.setBounds(
-                100,
-                180,
-                250,
-                30
-        );
+    cardClientes.setBounds(40, 120, 200, 120);
 
-        panelContenido.add(lblMascotas);
+    cardClientes.setBorder(
+            BorderFactory.createTitledBorder("CLIENTES")
+    );
 
-        JLabel lblHistorias =
-                new JLabel(
-                        "Total Historias Clínicas: "
-                        + totalHistorias
-                );
+    JLabel lblTotalClientes =
+            new JLabel(String.valueOf(totalClientes));
 
-        lblHistorias.setBounds(
-                100,
-                240,
-                300,
-                30
-        );
+    lblTotalClientes.setFont(
+            new Font("Arial", Font.BOLD, 36)
+    );
 
-        panelContenido.add(lblHistorias);
+    lblTotalClientes.setBounds(75, 35, 100, 40);
 
-        JLabel lblFacturas =
-                new JLabel(
-                        "Total Facturas: "
-                        + totalFacturas
-                );
+    cardClientes.add(lblTotalClientes);
 
-        lblFacturas.setBounds(
-                100,
-                300,
-                250,
-                30
-        );
+    panelContenido.add(cardClientes);
 
-        panelContenido.add(lblFacturas);
+    // TARJETA MASCOTAS
 
-        add(panelContenido);
-    }
+    JPanel cardMascotas = new JPanel();
+
+    cardMascotas.setLayout(null);
+
+    cardMascotas.setBounds(270, 120, 200, 120);
+
+    cardMascotas.setBorder(
+            BorderFactory.createTitledBorder("MASCOTAS")
+    );
+
+    JLabel lblTotalMascotas =
+            new JLabel(String.valueOf(totalMascotas));
+
+    lblTotalMascotas.setFont(
+            new Font("Arial", Font.BOLD, 36)
+    );
+
+    lblTotalMascotas.setBounds(75, 35, 100, 40);
+
+    cardMascotas.add(lblTotalMascotas);
+
+    panelContenido.add(cardMascotas);
+
+    // TARJETA HISTORIAS
+
+    JPanel cardHistorias = new JPanel();
+
+    cardHistorias.setLayout(null);
+
+    cardHistorias.setBounds(500, 120, 200, 120);
+
+    cardHistorias.setBorder(
+            BorderFactory.createTitledBorder("HISTORIAS")
+    );
+
+    JLabel lblTotalHistorias =
+            new JLabel(String.valueOf(totalHistorias));
+
+    lblTotalHistorias.setFont(
+            new Font("Arial", Font.BOLD, 36)
+    );
+
+    lblTotalHistorias.setBounds(75, 35, 100, 40);
+
+    cardHistorias.add(lblTotalHistorias);
+
+    panelContenido.add(cardHistorias);
+
+    // TARJETA FACTURAS
+
+    JPanel cardFacturas = new JPanel();
+
+    cardFacturas.setLayout(null);
+
+    cardFacturas.setBounds(730, 120, 200, 120);
+
+    cardFacturas.setBorder(
+            BorderFactory.createTitledBorder("FACTURAS")
+    );
+
+    JLabel lblTotalFacturas =
+            new JLabel(String.valueOf(totalFacturas));
+
+    lblTotalFacturas.setFont(
+            new Font("Arial", Font.BOLD, 36)
+    );
+
+    lblTotalFacturas.setBounds(75, 35, 100, 40);
+
+    cardFacturas.add(lblTotalFacturas);
+
+    panelContenido.add(cardFacturas);
+
+    add(panelContenido);
+}
 }

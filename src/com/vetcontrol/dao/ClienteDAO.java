@@ -9,5 +9,6 @@ public interface ClienteDAO {
 
     List<Cliente> listar();
     int contar();
+     Cliente buscarPorDni(String dni);
 
 }
