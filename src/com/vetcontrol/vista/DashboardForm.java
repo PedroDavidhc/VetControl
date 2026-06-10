@@ -45,12 +45,31 @@ btnAdmision.addActionListener(e -> {
 
         JButton btnHistoria = new JButton("Historia Clínica");
         btnHistoria.setBounds(20, 180, 170, 35);
+        btnHistoria.addActionListener(e -> {
+
+            HistoriaClinicaForm historia =
+                    new HistoriaClinicaForm();
+
+            historia.setVisible(true);
+
+        });
+        
 
         JButton btnFacturacion = new JButton("Facturación");
         btnFacturacion.setBounds(20, 230, 170, 35);
 
-        JButton btnSalir = new JButton("Cerrar Sesión");
-        btnSalir.setBounds(20, 550, 170, 35);
+                JButton btnSalir = new JButton("Cerrar Sesión");
+                btnSalir.setBounds(20, 550, 170, 35);
+                btnSalir.addActionListener(e -> {
+
+            dispose();
+
+            LoginForm login =
+                    new LoginForm();
+
+            login.setVisible(true);
+
+        });
 
         panelMenu.add(btnDashboard);
         panelMenu.add(btnAdmision);
