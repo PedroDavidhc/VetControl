@@ -8,4 +8,5 @@ public interface FacturaDAO {
     boolean guardar(Factura factura);
 
     List<Factura> listar();
+    int contar();
 }

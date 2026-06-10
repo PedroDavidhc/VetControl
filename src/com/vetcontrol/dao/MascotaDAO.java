@@ -8,5 +8,6 @@ public interface MascotaDAO {
     boolean guardar(Mascota mascota);
 
     List<Mascota> listar();
+    int contar();
 
 }

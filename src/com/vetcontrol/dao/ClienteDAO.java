@@ -8,5 +8,6 @@ public interface ClienteDAO {
     boolean guardar(Cliente cliente);
 
     List<Cliente> listar();
+    int contar();
 
 }

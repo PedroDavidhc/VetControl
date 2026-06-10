@@ -151,4 +151,36 @@ public class HistoriaClinicaDAOImpl
 
         return lista;
     }
+@Override
+public int contar() {
+
+    int total = 0;
+
+    String sql = "SELECT COUNT(*) FROM historia_clinica";
+
+    try {
+
+        Connection con = Conexion.conectar();
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            total = rs.getInt(1);
+        }
+
+    } catch (SQLException e) {
+
+        System.out.println(
+                "Error al contar: "
+                + e.getMessage()
+        );
+    }
+
+    return total;
+}    
 }

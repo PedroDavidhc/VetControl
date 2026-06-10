@@ -2,6 +2,10 @@ package com.vetcontrol.vista;
 
 import javax.swing.*;
 import com.vetcontrol.vista.AdmisionForm;
+import com.vetcontrol.dao.ClienteDAOImpl;
+import com.vetcontrol.dao.MascotaDAOImpl;
+import com.vetcontrol.dao.HistoriaClinicaDAOImpl;
+import com.vetcontrol.dao.FacturaDAOImpl;
 
 public class DashboardForm extends JFrame {
 
@@ -57,6 +61,14 @@ btnAdmision.addActionListener(e -> {
 
         JButton btnFacturacion = new JButton("Facturación");
         btnFacturacion.setBounds(20, 230, 170, 35);
+        btnFacturacion.addActionListener(e -> {
+
+            FacturacionForm factura =
+                    new FacturacionForm();
+
+            factura.setVisible(true);
+
+        });
 
                 JButton btnSalir = new JButton("Cerrar Sesión");
                 btnSalir.setBounds(20, 550, 170, 35);
@@ -103,18 +115,94 @@ btnAdmision.addActionListener(e -> {
         JLabel lblBienvenida =
                 new JLabel("Bienvenido al Sistema Veterinario");
 
-        lblBienvenida.setBounds(320, 100, 300, 30);
+        lblBienvenida.setBounds(330, 30, 300, 30);
 
         panelContenido.add(lblBienvenida);
 
+        ClienteDAOImpl clienteDAO =
+                new ClienteDAOImpl();
+
+        MascotaDAOImpl mascotaDAO =
+                new MascotaDAOImpl();
+
+        HistoriaClinicaDAOImpl historiaDAO =
+                new HistoriaClinicaDAOImpl();
+
+        FacturaDAOImpl facturaDAO =
+                new FacturaDAOImpl();
+
+        int totalClientes =
+                clienteDAO.contar();
+
+        int totalMascotas =
+                mascotaDAO.contar();
+
+        int totalHistorias =
+                historiaDAO.contar();
+
+        int totalFacturas =
+                facturaDAO.contar();
+
+        JLabel lblClientes =
+                new JLabel(
+                        "Total Clientes: "
+                        + totalClientes
+                );
+
+        lblClientes.setBounds(
+                100,
+                120,
+                250,
+                30
+        );
+
+        panelContenido.add(lblClientes);
+
+        JLabel lblMascotas =
+                new JLabel(
+                        "Total Mascotas: "
+                        + totalMascotas
+                );
+
+        lblMascotas.setBounds(
+                100,
+                180,
+                250,
+                30
+        );
+
+        panelContenido.add(lblMascotas);
+
+        JLabel lblHistorias =
+                new JLabel(
+                        "Total Historias Clínicas: "
+                        + totalHistorias
+                );
+
+        lblHistorias.setBounds(
+                100,
+                240,
+                300,
+                30
+        );
+
+        panelContenido.add(lblHistorias);
+
+        JLabel lblFacturas =
+                new JLabel(
+                        "Total Facturas: "
+                        + totalFacturas
+                );
+
+        lblFacturas.setBounds(
+                100,
+                300,
+                250,
+                30
+        );
+
+        panelContenido.add(lblFacturas);
+
         add(panelContenido);
-    }
-
-    public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() -> {
-            new DashboardForm().setVisible(true);
-        });
-
     }
 }

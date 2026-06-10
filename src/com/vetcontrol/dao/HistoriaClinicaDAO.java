@@ -8,4 +8,5 @@ public interface HistoriaClinicaDAO {
     boolean guardar(HistoriaClinica historia);
 
     List<HistoriaClinica> listar();
+    int contar();
 }
