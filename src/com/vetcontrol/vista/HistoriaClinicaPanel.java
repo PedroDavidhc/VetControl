@@ -5,6 +5,7 @@ import com.vetcontrol.dao.MascotaDAOImpl;
 import com.vetcontrol.dao.HistoriaClinicaDAOImpl;
 import com.vetcontrol.modelo.Mascota;
 import com.vetcontrol.modelo.HistoriaClinica;
+import com.vetcontrol.util.MensajeUtil;
 import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -43,36 +44,93 @@ private DefaultTableModel modelo;
 public HistoriaClinicaPanel() {
 
     setLayout(null);
+    setBackground(
+        new java.awt.Color(20,20,20)
+);
 
-    JLabel lblMascota = new JLabel("Mascota:");
+   JLabel lblMascota = new JLabel("Mascota:");
+lblMascota.setForeground(
+        new java.awt.Color(0,255,102)
+);
     lblMascota.setBounds(50, 30, 100, 25);
     add(lblMascota);
 
     cboMascota = new JComboBox<>();
+    cboMascota.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+cboMascota.setForeground(
+        java.awt.Color.WHITE
+);
     cboMascota.setBounds(150, 30, 250, 25);
     add(cboMascota);
 
-    JLabel lblPeso = new JLabel("Peso:");
+JLabel lblPeso = new JLabel("Peso:");
+lblPeso.setForeground(
+        new java.awt.Color(0,255,102)
+);
     lblPeso.setBounds(50, 70, 100, 25);
     add(lblPeso);
 
     txtPeso = new JTextField();
+    txtPeso.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+txtPeso.setForeground(
+        java.awt.Color.WHITE
+);
+
+txtPeso.setCaretColor(
+        new java.awt.Color(0,255,102)
+);
+    
     txtPeso.setBounds(150, 70, 250, 25);
     add(txtPeso);
 
     JLabel lblTemperatura = new JLabel("Temperatura:");
+    lblTemperatura.setForeground(
+        new java.awt.Color(0,255,102)
+);
+    
     lblTemperatura.setBounds(50, 110, 100, 25);
     add(lblTemperatura);
 
     txtTemperatura = new JTextField();
+    txtTemperatura.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+txtTemperatura.setForeground(
+        java.awt.Color.WHITE
+);
+
+txtTemperatura.setCaretColor(
+        new java.awt.Color(0,255,102)
+);
     txtTemperatura.setBounds(150, 110, 250, 25);
     add(txtTemperatura);
 
     JLabel lblDiagnostico = new JLabel("Diagnóstico:");
+    lblDiagnostico.setForeground(
+        new java.awt.Color(0,255,102)
+);
     lblDiagnostico.setBounds(50, 150, 100, 25);
     add(lblDiagnostico);
 
     txtDiagnostico = new JTextArea();
+    txtDiagnostico.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+txtDiagnostico.setForeground(
+        java.awt.Color.WHITE
+);
+
+txtDiagnostico.setCaretColor(
+        new java.awt.Color(0,255,102)
+);
 
     JScrollPane spDiagnostico =
             new JScrollPane(txtDiagnostico);
@@ -82,11 +140,25 @@ public HistoriaClinicaPanel() {
 
     JLabel lblTratamiento =
             new JLabel("Tratamiento:");
+    lblTratamiento.setForeground(
+        new java.awt.Color(0,255,102)
+);
 
     lblTratamiento.setBounds(50, 250, 100, 25);
     add(lblTratamiento);
 
     txtTratamiento = new JTextArea();
+    txtTratamiento.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+txtTratamiento.setForeground(
+        java.awt.Color.WHITE
+);
+
+txtTratamiento.setCaretColor(
+        new java.awt.Color(0,255,102)
+);
 
     JScrollPane spTratamiento =
             new JScrollPane(txtTratamiento);
@@ -96,11 +168,25 @@ public HistoriaClinicaPanel() {
 
     JLabel lblObservaciones =
             new JLabel("Observaciones:");
+    lblObservaciones.setForeground(
+        new java.awt.Color(0,255,102)
+);
 
     lblObservaciones.setBounds(50, 350, 100, 25);
     add(lblObservaciones);
 
     txtObservaciones = new JTextArea();
+    txtObservaciones.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+txtObservaciones.setForeground(
+        java.awt.Color.WHITE
+);
+
+txtObservaciones.setCaretColor(
+        new java.awt.Color(0,255,102)
+);
 
     JScrollPane spObservaciones =
             new JScrollPane(txtObservaciones);
@@ -109,10 +195,28 @@ public HistoriaClinicaPanel() {
     add(spObservaciones);
 
     btnGuardar = new JButton("Guardar Historia");
+    btnGuardar.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+btnGuardar.setForeground(
+        new java.awt.Color(0,255,102)
+);
+
+btnGuardar.setFocusPainted(false);
 
     btnGuardar.setBounds(180, 470, 180, 35);
     
                 btnExportar = new JButton("Exportar Excel");
+                btnExportar.setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+btnExportar.setForeground(
+        new java.awt.Color(0,255,102)
+);
+
+btnExportar.setFocusPainted(false);
 
         btnExportar.setBounds(380, 470, 180, 35);
 
@@ -128,9 +232,39 @@ public HistoriaClinicaPanel() {
         modelo.addColumn("Temperatura");
 
         tabla = new JTable(modelo);
+        tabla.setBackground(
+        new java.awt.Color(20,20,20)
+);
+
+tabla.setForeground(
+        java.awt.Color.WHITE
+);
+
+tabla.setGridColor(
+        new java.awt.Color(0,255,102)
+);
+
+tabla.setSelectionBackground(
+        new java.awt.Color(0,120,60)
+);
+
+tabla.setSelectionForeground(
+        java.awt.Color.WHITE
+);
+
+tabla.getTableHeader().setBackground(
+        new java.awt.Color(40,40,40)
+);
+
+tabla.getTableHeader().setForeground(
+        new java.awt.Color(0,255,102)
+);
 
         JScrollPane spTabla =
                 new JScrollPane(tabla);
+        spTabla.getViewport().setBackground(
+        new java.awt.Color(20,20,20)
+);
 
         spTabla.setBounds(500, 30, 350, 400);
 
@@ -169,6 +303,18 @@ private void cargarMascotas() {
 }
 
 private void guardarHistoria() {
+    if(txtPeso.getText().trim().isEmpty() ||
+   txtTemperatura.getText().trim().isEmpty() ||
+   txtDiagnostico.getText().trim().isEmpty() ||
+   txtTratamiento.getText().trim().isEmpty() ||
+   txtObservaciones.getText().trim().isEmpty()) {
+
+    MensajeUtil.error(
+            this,
+            "Complete todos los campos"
+    );
+    return;
+}
 
     try {
 
@@ -218,10 +364,10 @@ private void guardarHistoria() {
 
         if (dao.guardar(historia)) {
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Historia clínica guardada correctamente"
-            );
+MensajeUtil.info(
+        this,
+        "Historia clínica guardada correctamente"
+);
 
             limpiarCampos();
             cargarHistorias();
@@ -231,16 +377,16 @@ private void guardarHistoria() {
 
         } else {
 
-            JOptionPane.showMessageDialog(
-                    this,
+MensajeUtil.info(
+        this,
                     "No se pudo guardar"
             );
         }
 
     } catch (Exception e) {
 
-        JOptionPane.showMessageDialog(
-                this,
+MensajeUtil.info(
+        this,
                 "Error: " + e.getMessage()
         );
     }
@@ -362,16 +508,16 @@ String fechaHora =
 
                             libro.close();
 
-                    JOptionPane.showMessageDialog(
-                            this,
+                    MensajeUtil.info(
+        this,
                             "Excel exportado correctamente:\n"
                             + nombreArchivo
                     );
 
                         } catch (Exception e) {
 
-                            JOptionPane.showMessageDialog(
-                                    this,
+                            MensajeUtil.info(
+        this,
                                     "Error: " + e.getMessage()
                             );
                         }

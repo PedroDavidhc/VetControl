@@ -3,8 +3,12 @@ package com.vetcontrol.vista;
 import com.vetcontrol.dao.UsuarioDAO;
 import com.vetcontrol.dao.UsuarioDAOImpl;
 import com.vetcontrol.modelo.Usuario;
+import com.vetcontrol.util.MensajeUtil;
 import com.vetcontrol.vista.DashboardForm;
 import javax.swing.*;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+
 
 public class LoginForm extends JFrame {
 
@@ -14,40 +18,171 @@ public class LoginForm extends JFrame {
 
     public LoginForm() {
 
-        setTitle("VetControl");
-        setSize(400, 250);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setLayout(null);
+    setTitle("VetControl");
+    setSize(500, 320);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
+    setLayout(null);
 
-        JLabel lblTitulo = new JLabel("INICIO DE SESIÓN");
-        lblTitulo.setBounds(130, 20, 200, 25);
-        add(lblTitulo);
+    getContentPane().setBackground(
+            new java.awt.Color(20,20,20)
+    );
 
-        JLabel lblUsuario = new JLabel("Usuario:");
-        lblUsuario.setBounds(50, 70, 80, 25);
-        add(lblUsuario);
+    JLabel lblTitulo =
+            new JLabel("INICIO DE SESIÓN");
 
-        txtUsuario = new JTextField();
-        txtUsuario.setBounds(140, 70, 180, 25);
-        add(txtUsuario);
+    lblTitulo.setForeground(
+            new java.awt.Color(0,255,102)
+    );
 
-        JLabel lblPassword = new JLabel("Contraseña:");
-        lblPassword.setBounds(50, 110, 80, 25);
-        add(lblPassword);
+    lblTitulo.setFont(
+            new Font("Arial", Font.BOLD, 22)
+    );
 
-        txtPassword = new JPasswordField();
-        txtPassword.setBounds(140, 110, 180, 25);
-        add(txtPassword);
+    lblTitulo.setBounds(
+            140,
+            25,
+            250,
+            30
+    );
 
-        btnIngresar = new JButton("Ingresar");
-        btnIngresar.setBounds(140, 160, 120, 30);
-        add(btnIngresar);
+    add(lblTitulo);
 
-        // Evento del botón
-        btnIngresar.addActionListener(e -> login());
-    }
+    JLabel lblUsuario =
+            new JLabel("Usuario:");
 
+    lblUsuario.setForeground(
+            new java.awt.Color(0,255,102)
+    );
+
+    lblUsuario.setFont(
+            new Font("Arial", Font.BOLD, 14)
+    );
+
+    lblUsuario.setBounds(
+            50,
+            90,
+            100,
+            25
+    );
+
+    add(lblUsuario);
+
+    txtUsuario = new JTextField();
+
+    txtUsuario.setBackground(
+            new java.awt.Color(40,40,40)
+    );
+
+    txtUsuario.setForeground(
+            java.awt.Color.WHITE
+    );
+
+    txtUsuario.setCaretColor(
+            new java.awt.Color(0,255,102)
+    );
+
+    txtUsuario.setBorder(
+            BorderFactory.createLineBorder(
+                    new java.awt.Color(0,255,102)
+            )
+    );
+
+    txtUsuario.setBounds(
+            160,
+            90,
+            220,
+            30
+    );
+
+    add(txtUsuario);
+
+    JLabel lblPassword =
+            new JLabel("Contraseña:");
+
+    lblPassword.setForeground(
+            new java.awt.Color(0,255,102)
+    );
+
+    lblPassword.setFont(
+            new Font("Arial", Font.BOLD, 14)
+    );
+
+    lblPassword.setBounds(
+            50,
+            140,
+            100,
+            25
+    );
+
+    add(lblPassword);
+
+    txtPassword =
+            new JPasswordField();
+
+    txtPassword.setBackground(
+            new java.awt.Color(40,40,40)
+    );
+
+    txtPassword.setForeground(
+            java.awt.Color.WHITE
+    );
+
+    txtPassword.setCaretColor(
+            new java.awt.Color(0,255,102)
+    );
+
+    txtPassword.setBorder(
+            BorderFactory.createLineBorder(
+                    new java.awt.Color(0,255,102)
+            )
+    );
+
+    txtPassword.setBounds(
+            160,
+            140,
+            220,
+            30
+    );
+
+    add(txtPassword);
+
+    btnIngresar =
+            new JButton("Ingresar");
+
+    btnIngresar.setBackground(
+            new java.awt.Color(40,40,40)
+    );
+
+    btnIngresar.setForeground(
+            new java.awt.Color(0,255,102)
+    );
+
+    btnIngresar.setFocusPainted(false);
+
+    btnIngresar.setBorder(
+            BorderFactory.createLineBorder(
+                    new java.awt.Color(130,140,150)
+            )
+    );
+
+    btnIngresar.setFont(
+            new Font("Arial", Font.BOLD, 14)
+    );
+
+    btnIngresar.setBounds(
+            170,
+            210,
+            150,
+            40
+    );
+
+    add(btnIngresar);
+
+    btnIngresar.addActionListener(
+            e -> login()
+    );
+}
 private void login() {
 
     String usuario = txtUsuario.getText();
@@ -61,10 +196,10 @@ private void login() {
 
     if (user != null) {
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Bienvenido " + user.getUsuario()
-        );
+MensajeUtil.info(
+        this,
+        "Bienvenido " + user.getUsuario()
+);
 
         DashboardForm dashboard =
                 new DashboardForm();
@@ -75,17 +210,17 @@ private void login() {
 
     } else {
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Usuario o contraseña incorrectos"
-        );
+MensajeUtil.error(
+        this,
+        "Usuario o contraseña incorrectos"
+);
     }
 }
-    public static void main(String[] args) {
+public static void main(String[] args) {
 
-        SwingUtilities.invokeLater(() -> {
-            new LoginForm().setVisible(true);
-        });
+    SwingUtilities.invokeLater(() -> {
+        new LoginForm().setVisible(true);
+    });
 
-    }
+}
 }

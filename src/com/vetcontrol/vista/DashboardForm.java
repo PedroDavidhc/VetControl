@@ -7,15 +7,6 @@ import com.vetcontrol.dao.MascotaDAOImpl;
 import com.vetcontrol.dao.HistoriaClinicaDAOImpl;
 import com.vetcontrol.dao.FacturaDAOImpl;
 import java.awt.Font;
-import com.vetcontrol.vista.ConsultaClientePanel;
-import com.vetcontrol.vista.HistoriaClinicaPanel;
-import com.vetcontrol.vista.FacturacionPanel;
-import com.vetcontrol.vista.ClientePanel;
-import com.vetcontrol.vista.AdmisionPanel;
-import com.vetcontrol.vista.AdmisionPanel;
-import com.vetcontrol.vista.ConsultaClientePanel;
-import com.vetcontrol.vista.FacturacionPanel;
-import com.vetcontrol.vista.HistoriaClinicaPanel;
 
 public class DashboardForm extends JFrame {
 
@@ -30,6 +21,9 @@ public class DashboardForm extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        getContentPane().setBackground(
+        new java.awt.Color(25, 25, 25)
+);
 
         crearPanelMenu();
         crearHeader();
@@ -41,8 +35,18 @@ public class DashboardForm extends JFrame {
         panelMenu = new JPanel();
         panelMenu.setLayout(null);
         panelMenu.setBounds(0, 0, 220, 700);
+        panelMenu.setBackground(
+        new java.awt.Color(20, 20, 20)
+);
 
         JButton btnDashboard = new JButton("Dashboard");
+                    btnDashboard.setBackground(
+                    new java.awt.Color(40, 40, 40)
+            );
+
+            btnDashboard.setForeground(
+                    new java.awt.Color(0, 255, 102)
+            );
         btnDashboard.setBounds(20, 80, 170, 35);
             btnDashboard.addActionListener(e -> {
 
@@ -51,7 +55,14 @@ public class DashboardForm extends JFrame {
     });
 
         JButton btnAdmision = new JButton("Admisión");
-        btnAdmision.setBounds(20, 130, 170, 35);
+                btnAdmision.setBackground(
+                new java.awt.Color(40, 40, 40)
+        );
+
+        btnAdmision.setForeground(
+                new java.awt.Color(0, 255, 102)
+        );
+                btnAdmision.setBounds(20, 130, 170, 35);
         btnAdmision.addActionListener(e -> {
 
             mostrarPanel(
@@ -61,6 +72,16 @@ public class DashboardForm extends JFrame {
         
 
                 JButton btnHistoria = new JButton("Historia Clínica");
+                btnHistoria.setBackground(
+        new java.awt.Color(40,40,40)
+);
+            btnHistoria.setForeground(
+                    new java.awt.Color(0, 255, 102)
+            );
+
+            btnAdmision.setForeground(
+                    new java.awt.Color(0, 255, 102)
+            );
                 btnHistoria.setBounds(20, 180, 170, 35);
                 btnHistoria.addActionListener(e -> {
 
@@ -71,6 +92,16 @@ public class DashboardForm extends JFrame {
         
 
         JButton btnFacturacion = new JButton("Facturación");
+        btnFacturacion.setBackground(
+        new java.awt.Color(40,40,40)
+);
+            btnFacturacion.setForeground(
+                    new java.awt.Color(0, 255, 102)
+            );
+
+        btnAdmision.setForeground(
+                new java.awt.Color(0, 255, 102)
+        );
         btnFacturacion.setBounds(20, 230, 170, 35);
         btnFacturacion.addActionListener(e -> {
 
@@ -80,6 +111,17 @@ public class DashboardForm extends JFrame {
         });
                 JButton btnConsultaCliente =
                 new JButton("Consulta Cliente");
+            btnConsultaCliente.setBackground(
+                    new java.awt.Color(40,40,40)
+            );
+
+            btnConsultaCliente.setForeground(
+                    new java.awt.Color(0,255,102)
+            );
+
+btnAdmision.setForeground(
+        new java.awt.Color(0, 255, 102)
+);
 
         btnConsultaCliente.setBounds(
                 20,
@@ -97,6 +139,13 @@ btnConsultaCliente.addActionListener(e -> {
         
 
                 JButton btnSalir = new JButton("Cerrar Sesión");
+                btnSalir.setBackground(
+                        new java.awt.Color(40,40,40)
+                );
+
+                btnSalir.setForeground(
+                        new java.awt.Color(0,255,102)
+                );
                 btnSalir.setBounds(20, 550, 170, 35);
                 btnSalir.addActionListener(e -> {
 
@@ -119,19 +168,45 @@ btnConsultaCliente.addActionListener(e -> {
         add(panelMenu);
     }
 
-    private void crearHeader() {
+private void crearHeader() {
 
-        panelHeader = new JPanel();
-        panelHeader.setLayout(null);
-        panelHeader.setBounds(220, 0, 980, 80);
+    panelHeader = new JPanel();
 
-        JLabel lblTitulo = new JLabel("VETCONTROL");
-        lblTitulo.setBounds(420, 20, 200, 30);
+    panelHeader.setLayout(null);
 
-        panelHeader.add(lblTitulo);
+    panelHeader.setBounds(
+            220,
+            0,
+            980,
+            80
+    );
 
-        add(panelHeader);
-    }
+    panelHeader.setBackground(
+            new java.awt.Color(15, 15, 15)
+    );
+
+    JLabel lblTitulo =
+            new JLabel("VETCONTROL");
+
+    lblTitulo.setFont(
+            new Font("Arial", Font.BOLD, 22)
+    );
+
+    lblTitulo.setForeground(
+            new java.awt.Color(0, 255, 102)
+    );
+
+    lblTitulo.setBounds(
+            400,
+            20,
+            250,
+            30
+    );
+
+    panelHeader.add(lblTitulo);
+
+    add(panelHeader);
+}
 
     private void crearContenido() {
 
@@ -143,6 +218,9 @@ btnConsultaCliente.addActionListener(e -> {
                     980,
                     620
             );
+            panelContenido.setBackground(
+        new java.awt.Color(25, 25, 25)
+);
 
             add(panelContenido);
 
@@ -175,6 +253,9 @@ private void mostrarDashboard() {
     lblBienvenida.setFont(
             new Font("Arial", Font.BOLD, 18)
     );
+    lblBienvenida.setForeground(
+        new java.awt.Color(0, 255, 102)
+);
 
     lblBienvenida.setBounds(
             330,
@@ -221,9 +302,20 @@ private void mostrarDashboard() {
             120
     );
 
-    cardClientes.setBorder(
-            BorderFactory.createTitledBorder("CLIENTES")
-    );
+javax.swing.border.TitledBorder bordeClientes =
+        BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(
+                        new java.awt.Color(0,255,102),
+                        2
+                ),
+                "CLIENTES"
+        );
+
+bordeClientes.setTitleColor(
+        new java.awt.Color(180,180,180)
+);
+
+cardClientes.setBorder(bordeClientes);
 
     JLabel lblTotalClientes =
             new JLabel(
@@ -233,6 +325,9 @@ private void mostrarDashboard() {
     lblTotalClientes.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
+    lblTotalClientes.setForeground(
+        new java.awt.Color(0,255,102)
+);
 
     lblTotalClientes.setBounds(
             75,
@@ -246,6 +341,9 @@ private void mostrarDashboard() {
     panelContenido.add(cardClientes);
 
     JPanel cardMascotas = new JPanel();
+    cardClientes.setBackground(
+        new java.awt.Color(20, 20, 20)
+);
 
     cardMascotas.setLayout(null);
 
@@ -256,9 +354,21 @@ private void mostrarDashboard() {
             120
     );
 
-    cardMascotas.setBorder(
-            BorderFactory.createTitledBorder("MASCOTAS")
-    );
+javax.swing.border.TitledBorder bordeMascotas =
+        BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(
+                        new java.awt.Color(0,255,102),
+                        2
+                ),
+                "MASCOTAS"
+        );
+
+bordeMascotas.setTitleColor(
+        new java.awt.Color(180,180,180)
+);
+
+cardMascotas.setBorder(bordeMascotas);
+    
 
     JLabel lblTotalMascotas =
             new JLabel(
@@ -268,6 +378,9 @@ private void mostrarDashboard() {
     lblTotalMascotas.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
+    lblTotalMascotas.setForeground(
+        new java.awt.Color(0,255,102)
+);
 
     lblTotalMascotas.setBounds(
             75,
@@ -281,6 +394,12 @@ private void mostrarDashboard() {
     panelContenido.add(cardMascotas);
 
     JPanel cardHistorias = new JPanel();
+    cardMascotas.setBackground(
+        new java.awt.Color(20, 20, 20)
+);
+    cardHistorias.setBackground(
+        new java.awt.Color(20,20,20)
+);
 
     cardHistorias.setLayout(null);
 
@@ -291,9 +410,20 @@ private void mostrarDashboard() {
             120
     );
 
-    cardHistorias.setBorder(
-            BorderFactory.createTitledBorder("HISTORIAS")
-    );
+javax.swing.border.TitledBorder bordeHistorias =
+        BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(
+                        new java.awt.Color(0,255,102),
+                        2
+                ),
+                "HISTORIAS"
+        );
+
+bordeHistorias.setTitleColor(
+        new java.awt.Color(180,180,180)
+);
+
+cardHistorias.setBorder(bordeHistorias);
 
     JLabel lblTotalHistorias =
             new JLabel(
@@ -303,6 +433,10 @@ private void mostrarDashboard() {
     lblTotalHistorias.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
+    lblTotalHistorias.setForeground(
+        new java.awt.Color(0,255,102)
+);
+    
 
     lblTotalHistorias.setBounds(
             75,
@@ -316,6 +450,9 @@ private void mostrarDashboard() {
     panelContenido.add(cardHistorias);
 
     JPanel cardFacturas = new JPanel();
+    cardFacturas.setBackground(
+        new java.awt.Color(20,20,20)
+);
 
     cardFacturas.setLayout(null);
 
@@ -326,9 +463,20 @@ private void mostrarDashboard() {
             120
     );
 
-    cardFacturas.setBorder(
-            BorderFactory.createTitledBorder("FACTURAS")
-    );
+javax.swing.border.TitledBorder bordeFacturas =
+        BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(
+                        new java.awt.Color(0,255,102),
+                        2
+                ),
+                "FACTURAS"
+        );
+
+bordeFacturas.setTitleColor(
+        new java.awt.Color(180,180,180)
+);
+
+cardFacturas.setBorder(bordeFacturas);
 
     JLabel lblTotalFacturas =
             new JLabel(
@@ -338,6 +486,10 @@ private void mostrarDashboard() {
     lblTotalFacturas.setFont(
             new Font("Arial", Font.BOLD, 36)
     );
+    lblTotalFacturas.setForeground(
+        new java.awt.Color(0,255,102)
+);
+   
 
     lblTotalFacturas.setBounds(
             75,
